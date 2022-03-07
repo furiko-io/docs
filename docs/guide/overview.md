@@ -1,0 +1,44 @@
+# Furiko
+
+**Furiko** is a cloud-native, enterprise-level cron and adhoc job platform for Kubernetes.
+
+<figure markdown>
+  ![Furiko Logo](../assets/images/color_horizontal.png){ width="500" style="background: white; padding: 30px;" }
+  <figcaption>The word "furiko" (振り子) means "pendulum" in Japanese.</figcaption>
+</figure>
+
+## Introduction
+
+Furiko is a Kubernetes-native operator for managing, scheduling and executing scheduled and adhoc jobs and workflows. It aims to be an general-purpose job platform that supports a diverse range of use cases, including cron jobs, batch processing, workflow automation, etc.
+
+Furiko is built from the beginning to support enterprise-level use cases and running self-hosted in a private Kubernetes cluster, supporting users across a large organization.
+
+Some use cases that are perfect for Furiko include:
+
+- Cron-based scheduling massive amounts of periodic jobs per day in a large organization
+- Scheduling some jobs to run once at a later time, with a set of specific inputs
+- Starting multiple jobs to execute one after another, once the previous job has finished
+- Event-driven, offline/asynchronous job processing via webhooks
+- Building a platform to automate business operations via form-based inputs (with Furiko as the job engine)
+
+## Why Choose Furiko
+
+There are several other workflow platforms available for Kubernetes today. Furiko specializes in **time-based scheduling**, taking an emphasis on **correctness and scale**, providing an out-of-the-box solution to run massive amounts of job executions every day without missing a beat.
+
+Initially developed as an internal project in Shopee, Furiko prides itself on being optimized to support **millions of job executions per day** across multiple clusters, while being expressive enough to support a multitude of business use cases. At the same time, Furiko offers **high consistency and reliability** in the face of failure or restarts to prevent double runs and missed runs.
+
+Furiko is designed to be used both as a standalone platform, or as a framework for more complex platforms that build on top of Furiko, such as IT automation or customer service portals.
+
+More details can be found on the [Features](./features.md) page.
+
+<!-- prettier-ignore -->
+!!! info
+    Furiko is currently in **ALPHA** and APIs may change at any time, so use it at your own risk.
+
+## License
+
+Furiko is licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt).
+
+Logo is designed by Duan Weiwei, and is distributed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+**NOTE**: Although started within the company, Furiko is **not an official Shopee project or product**.

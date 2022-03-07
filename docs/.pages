@@ -1,0 +1,6 @@
+# This file is used by the awesome-pages plugin:
+# https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+nav:
+  - Home: index.md
+  - Guide: guide
+  - Reference: reference

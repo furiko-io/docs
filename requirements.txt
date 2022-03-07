@@ -1,0 +1,5 @@
+mdx_truly_sane_lists
+mkdocs==1.2.3
+mkdocs-awesome-pages-plugin==2.7.0
+mkdocs-material==8.2.4
+pymdown-extensions

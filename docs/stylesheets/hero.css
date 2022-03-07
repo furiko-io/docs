@@ -1,0 +1,71 @@
+/* Mostly adapted from https://github.com/squidfunk/mkdocs-material/blob/master/src/overrides/assets/stylesheets/main/layout/_hero.scss. */
+
+.mdx-container {
+  padding-top: 20px;
+  background: url("data:image/svg+xml; utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: hsla(0, 0%, 100%, 1)' /></svg>")
+      no-repeat bottom,
+    linear-gradient(
+      to bottom,
+      var(--md-primary-fg-color),
+      var(--md-primary-fg-color--light)
+    );
+}
+
+/* Override SVG background for Slate theme */
+[data-md-color-scheme="furiko_slate"] .mdx-container {
+  background: url("data:image/svg+xml; utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: hsla(232, 15%, 21%, 1)' /></svg>")
+      no-repeat bottom,
+    linear-gradient(
+      to bottom,
+      var(--md-primary-fg-color),
+      var(--md-primary-fg-color--light)
+    );
+}
+
+.mdx-hero {
+  margin: 0 16px;
+  color: var(--md-primary-bg-color);
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  width: calc(100% - 32px);
+}
+
+@media screen and (min-width: 60em) {
+  .mdx-hero {
+    flex-direction: row;
+  }
+}
+
+.mdx-hero h1 {
+  margin-bottom: 20px;
+  color: currentcolor;
+  font-weight: 700;
+}
+
+.mdx-hero__content {
+  padding-bottom: 120px;
+}
+
+img.mdx-hero__image {
+  display: block;
+}
+
+.mdx-hero .md-button {
+  margin-top: 10px;
+  margin-right: 10px;
+  color: var(--md-primary-bg-color);
+}
+
+.mdx-hero .md-button:focus,
+.mdx-hero .md-button:hover {
+  color: var(--md-accent-bg-color);
+  background-color: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+}
+
+.mdx-hero .md-button--primary {
+  color: var(--md-accent-fg-color);
+  background-color: var(--md-primary-bg-color);
+  border-color: var(--md-primary-bg-color);
+}

@@ -1,0 +1,60 @@
+site_name: Furiko Documentation
+site_url: https://furiko.io
+site_description: Cloud-native, enterprise-level cron job platform for Kubernetes
+repo_url: https://github.com/furiko-io/furiko
+repo_name: furiko-io/furiko
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; 2022 The Furiko Authors 🕰️
+docs_dir: docs
+
+theme:
+  name: "material"
+  logo: assets/images/logo_banner.svg
+  favicon: assets/favicon.ico
+  custom_dir: src/overrides
+
+  icon:
+    repo: fontawesome/brands/github
+
+  palette:
+    - scheme: furiko_slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+    - scheme: furiko
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+  features:
+    - navigation.instant
+    - navigation.indexes
+    - navigation.sections
+    - navigation.expand
+    - navigation.tabs
+    - search.highlight
+    - search.share
+    - search.suggest
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/hero.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - mdx_truly_sane_lists
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+plugins:
+  - search
+  - awesome-pages

@@ -1,0 +1,16 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin
+testbin/*
+
+# editor and IDE paraphernalia
+.idea
+*.swp
+*.swo
+*~
+
+# Output
+public/

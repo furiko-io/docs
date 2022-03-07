@@ -1,0 +1,12 @@
+title: Job
+nav:
+  - index.md
+  - task-executor.md
+  - adhoc-execution.md
+  - start-policy.md
+  - timeout-retries.md
+  - killing-jobs.md
+  - force-deletion.md
+  - garbage-collection.md
+  - sample-configuration.md
+  - ...
