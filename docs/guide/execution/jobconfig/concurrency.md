@@ -55,7 +55,7 @@ The following scenarios explain what happens when there is another concurrent Jo
 1. Another Job is about to be scheduled by the CronController: Will be silently dropped and from scheduling.
 2. An ad-hoc Job is created (e.g. using `kubectl`): Will be rejected by the validating admission webhook in most cases.
 
-If the Job was created almost at the same time that the concurrent Job started, it may be possible for it to bypass the validation webhook. In this case, the [JobQueueController](../../advanced-topics/architecture/execution-controller.md#jobqueuecontroller) will reject the Job with `AdmissionError` like as follows:
+If the Job was created almost at the same time that the concurrent Job started, it may be possible for it to bypass the validation webhook. In this case, the [JobQueueController](../../development/architecture/execution-controller.md#jobqueuecontroller) will reject the Job with `AdmissionError` like as follows:
 
 ```
 $ kubectl describe kjob jobconfig-sample-btzqx

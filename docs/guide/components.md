@@ -2,7 +2,7 @@
 
 Furiko is organized into the following components, which groups together related functionality and also serves as individual deployment units.
 
-More information about the architecture can be found [here](./advanced-topics/architecture/index.md).
+More information about the architecture can be found [here](./development/architecture/index.md).
 
 ## Execution
 

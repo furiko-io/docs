@@ -20,13 +20,13 @@ Furiko introduces a new syntax like `H/5 * * * *`. The `H` token means to determ
 
 Furiko introduces stronger and more flexible [handling of multiple concurrent jobs](./execution/jobconfig/concurrency.md).
 
-Using the `Forbid` concurrency policy, Furiko takes a very [strict approach](./advanced-topics/architecture/execution-controller.md#jobqueuecontroller) to ensuring that multiple jobs will never be started at the same time, free of race conditions. Another example is `Enqueue`, which allows multiple jobs to be queued in a FIFO manner for [executing at a later time](./execution/job/adhoc-execution.md#scheduling-adhoc-future-executions).
+Using the `Forbid` concurrency policy, Furiko takes a very [strict approach](./development/architecture/execution-controller.md#jobqueuecontroller) to ensuring that multiple jobs will never be started at the same time, free of race conditions. Another example is `Enqueue`, which allows multiple jobs to be queued in a FIFO manner for [executing at a later time](./execution/job/adhoc-execution.md#scheduling-adhoc-future-executions).
 
 ### Exactly-once Scheduling
 
 Furiko provides strong guarantees to provide **exactly-once scheduling** of jobs even in the face of failure, by preventing both double runs and missed runs in most cases.
 
-Furiko prevents double scheduled runs by using [deterministic name formats](./advanced-topics/architecture/execution-controller.md#jobcontroller). It also prevents missed runs using [back-scheduling](./execution/jobconfig/scheduling/#back-scheduling) to tolerate short downtime, allowing the cluster administrator to safely restart or upgrade Furiko at any time.
+Furiko prevents double scheduled runs by using [deterministic name formats](./development/architecture/execution-controller.md#jobcontroller). It also prevents missed runs using [back-scheduling](./execution/jobconfig/scheduling/#back-scheduling) to tolerate short downtime, allowing the cluster administrator to safely restart or upgrade Furiko at any time.
 
 ### Enhanced Timeout Handling
 
