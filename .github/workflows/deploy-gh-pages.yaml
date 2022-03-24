@@ -1,19 +1,15 @@
-name: Deploy Mkdocs
-
+name: Deploy Mkdocs to GitHub Pages
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-
-      # Build mkdocs
+      # Build mkdocs and push to gh-pages branch
       - name: Deploy MkDocs
         uses: mhausenblas/mkdocs-deploy-gh-pages@1.24
         env:
