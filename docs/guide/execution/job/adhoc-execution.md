@@ -21,7 +21,7 @@ spec:
     username: bob
 ```
 
-The [webhook](../../advanced-topics/architecture/execution-webhook.md) is responsible for transforming the Job creation request, so that all fields will be populated from the JobConfig. The end result would be the following, extremely comprehensive Job configuration. Some fields are explained below.
+The [webhook](../../development/architecture/execution-webhook.md) is responsible for transforming the Job creation request, so that all fields will be populated from the JobConfig. The end result would be the following, extremely comprehensive Job configuration. Some fields are explained below.
 
 <!-- prettier-ignore -->
 ??? example "Example: Final Result after transforming Jobs with configName"

@@ -4,4 +4,5 @@ nav:
   - Features: features.md
   - Components: components.md
   - Execution: execution
-  - Advanced Topics: advanced-topics
+  - Contributing: contributing
+  - Development: development

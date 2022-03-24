@@ -4,7 +4,9 @@ Here we will briefly outline plans for the future of Furiko.
 
 <!-- prettier-ignore -->
 !!! info
-    The following planned features are either already implemented in our internal closed-source project and will be eventually ported over to Furiko, or is currently planned for future implementation.
+    The following planned features are either already implemented in Furiko's internal closed-source project and will be eventually ported over, or is currently planned for future implementation.
+
+    This document may not be up-to-date. Refer to [the GitHub repository](https://github.com/furiko-io/furiko/) for the latest progress.
 
 ## Main Components
 
