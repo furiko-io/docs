@@ -12,7 +12,7 @@ The documentation site is built using [MkDocs](https://www.mkdocs.org/), a stati
   - Any `.md` files in this folder will be built into `.html` files by `mkdocs`.
   - The names of `.md` files and any folders will be used in the resultant public URL path, so please choose names wisely.
   - Additional non-documentation files (e.g. image assets, CSS) can be added to this folder as well.
-  - **IMPORTANT**: Do not rename existing files or folders, as it may break existing links to the site.
+  - **IMPORTANT**: Try not to rename existing files or folders, as it may break existing links to the site.
 - `src`: Contains any source code used for MkDocs code generation.
 - `mkdocs.yml`: The [configuration file](https://www.mkdocs.org/user-guide/configuration/) used by MkDocs.
 

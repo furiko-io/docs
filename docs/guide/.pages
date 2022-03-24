@@ -4,4 +4,5 @@ nav:
   - Features: features.md
   - Components: components.md
   - Execution: execution
+  - Contributing: contributing
   - Development: development
