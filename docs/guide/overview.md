@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Furiko is a Kubernetes-native operator for managing, scheduling and executing scheduled and adhoc jobs and workflows. It aims to be an general-purpose job platform that supports a diverse range of use cases, including cron jobs, batch processing, workflow automation, etc.
+Furiko is a Kubernetes-native operator for managing, scheduling and executing scheduled and adhoc jobs and workflows. It aims to be a general-purpose job platform that supports a diverse range of use cases, including cron jobs, batch processing, workflow automation, etc.
 
 Furiko is built from the beginning to support enterprise-level use cases and running self-hosted in a private Kubernetes cluster, supporting users across a large organization.
 
