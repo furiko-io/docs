@@ -3,6 +3,7 @@ nav:
   - Overview: overview.md
   - Features: features.md
   - Components: components.md
+  - Getting Started: setup
   - Execution: execution
   - Contributing: contributing
   - Development: development
