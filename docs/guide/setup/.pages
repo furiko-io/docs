@@ -1,0 +1,5 @@
+nav:
+  - Installing Furiko: install.md
+  - Configuring Furiko: configuration.md
+  - Advanced Installation: advanced-installation.md
+  - ...

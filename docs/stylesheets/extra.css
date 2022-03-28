@@ -61,3 +61,8 @@
   :-webkit-any(img, svg) {
   height: 2rem;
 }
+
+/* Support no-copy for code blocks */
+.highlight.no-copy .md-clipboard {
+  display: none;
+}
