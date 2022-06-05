@@ -23,7 +23,7 @@ The following command installs the [**Furiko Execution**](../execution/concepts.
 <!-- TODO(irvinlim): We may need to synchronize the following command with the current latest stable release. -->
 
 ```sh
-kubectl apply -f https://github.com/furiko-io/furiko/releases/download/v0.1.0/furiko-execution.yaml
+kubectl apply -f https://github.com/furiko-io/furiko/releases/download/v0.2.0/furiko-execution.yaml
 ```
 
 Refer to the GitHub Releases page for a full list of available releases.
