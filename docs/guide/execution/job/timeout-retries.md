@@ -32,9 +32,9 @@ If not specified, defaults to no timeout.
 !!! todo
     This timeout is not yet implemented.
 
-### `template.spec.activeDeadlineSeconds`
+### `taskTemplate.pod.spec.activeDeadlineSeconds`
 
-You can also set the task's `activeDeadlineSeconds` directly, which is the duration relative to the Pod's `startTime` before Kubelet will actively try to kill associated containers.
+You can also set the Pod's `activeDeadlineSeconds` directly, which is the duration relative to the Pod's `startTime` before Kubelet will actively try to kill associated containers.
 
 ## Job-level Timeouts
 
@@ -54,17 +54,21 @@ Furiko retries failed Jobs by creating a new Task.
 
 If a Node is misconfigured or has some host-level issue, using `restartPolicy: OnFailure` to recreate the container would not be sufficient to avoid spurious Job failures which may only be resolved by running the Task on a different Node. As such, Furiko recommends using Job-level retries, which recreates an entirely new Pod.
 
-### `maxRetryAttempts`
+### `maxAttempts`
 
-Specifies the maximum number of retries to attempt, **after** the first failed task. That is, the `maxRetryAttempts` does **NOT** include the first task.
+Specifies the maximum number of task attempts.
 
-If not specified, it means that the Job will not retry.
+If the job is a [parallel job](./parallelism.md), this corresponds to the maximum number of attempts for each parallel index.
+
+If not specified, defaults to `1` (i.e. no retries). Must be a positive integer.
 
 ### `retryDelaySeconds`
 
 Specifies the duration between the last failed task and creation of the next task.
 
-If not specified, it means there is no delay.
+If the job is a [parallel job](./parallelism.md), the retry delay is from the time of the last failed task with the same parallel index. That is, if there are two parallel tasks - index `0` and index `1` - which failed at `t=0` and `t=15`, with `retryDelaySeconds` of `30`, the controller will only create the next attempts at `t=30` and `t=45` respectively.
+
+If not specified, it means there is no delay between creating task attempts.
 
 ### `restartPolicy`
 
@@ -72,4 +76,4 @@ If the Job uses both `restartPolicy: OnFailure` in conjunction with Furiko Job-l
 
 If a Job is in a `CrashLoopBackOff`, it will be deemed to be still "pending", and if it remains/transitions to this state even after its [pending timeout](#pendingtimeoutseconds), it will be killed. The next Task will be only created after `retryDelaySeconds`, which results in the creation of a brand-new Pod.
 
-This means that the total time taken before terminating in failure would be roughly around `pendingTimeoutSeconds * (maxRetryAttempts + 1) + retryDelaySeconds * maxRetryAttempts`, rather than simply the sum of all tasks' running durations.
+This means that the total time taken before terminating in failure would be roughly around `pendingTimeoutSeconds * maxAttempts + retryDelaySeconds * (maxAttempts - 1)`, rather than simply the sum of all tasks' running durations.

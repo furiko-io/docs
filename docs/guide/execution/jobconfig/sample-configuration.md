@@ -29,20 +29,27 @@ spec:
           default: Example User
           trimSpaces: true
 
-  # Template for the Job to be created.
+  # Template for the Job to be created. For more info, see the Job sample configuration.
   template:
     # Any labels and annotations will be automatically added to downstream Jobs.
     metadata:
       annotations:
         annotations.furiko.io/job-group: "cool-jobs"
     spec:
-      task:
-        # Optional duration in seconds for how long the task should be pending
-        # until it gets killed.
-        pendingTimeoutSeconds: 1800
+      # Specifies maximum number of attempts for each task, defaults to 1.
+      maxAttempts: 3
 
-        # Define how the task should be created. This is just a PodTemplateSpec.
-        template:
+      # Optional delay between each task retry.
+      retryDelaySeconds: 10
+
+      # Optional duration in seconds for how long each task should be pending for
+      # until it gets killed.
+      taskPendingTimeoutSeconds: 1800
+
+      # The template for each task to be created by the Job.
+      taskTemplate:
+        # Specify how to create the task as a Pod. This is just a PodTemplateSpec.
+        pod:
           spec:
             containers:
               # Notice how we can use context variables and job options inside

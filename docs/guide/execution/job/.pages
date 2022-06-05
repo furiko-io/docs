@@ -4,6 +4,7 @@ nav:
   - task-executor.md
   - adhoc-execution.md
   - start-policy.md
+  - parallelism.md
   - timeout-retries.md
   - killing-jobs.md
   - force-deletion.md

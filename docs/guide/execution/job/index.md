@@ -2,17 +2,17 @@
 
 This page describes how to configure a Job. You can find a full sample configuration [here](./sample-configuration.md).
 
-## Task Template
-
-Each Job needs a template which describes how to create the task.
-
-You can specify the task template under `.spec.task.template`. This template is a [`PodTemplateSpec`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podtemplate-v1-core).
-
 ## Task Executor
 
-A Job creates one or more tasks during its lifecycle. Each task corresponds to an attempt to execute the Job.
+A Job creates one or more tasks during its lifecycle. Each task corresponds to a single parallel and retry index for the Job.
 
-Currently, all tasks are created as Pods. For more details on the task executor interface, see [Task Executors](./task-executor.md).
+The Job needs a template which describes how to create tasks. You can specify the task template under `.spec.taskTemplate`, which supports the following fields (exactly one must be specified):
+
+- `pod`: Create the task as a Pod. This template is a [`PodTemplateSpec`](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#podtemplate-v1-core).
+
+Currently, only the `pod` task executor is supported.
+
+For more details on the task executor interface, see [Task Executors](./task-executor.md).
 
 ## Running Adhoc Jobs
 

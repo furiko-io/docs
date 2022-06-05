@@ -41,10 +41,10 @@ metadata:
 # Each key in the ConfigMap corresponds to a single dynamic config name.
 data:
   # Data in the config must be a YAML or JSON-encoded string.
-  job-controller: |
+  jobs: |
     defaultTTLSecondsAfterFinished: 3600
     defaultPendingTimeoutSeconds: 900
-  cron-controller: |
+  cron: |
     cronFormat: "standard"
     cronHashNames: true
 ```

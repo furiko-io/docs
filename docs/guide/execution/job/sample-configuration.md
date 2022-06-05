@@ -41,20 +41,40 @@ kind: Job
 metadata:
   generateName: jobconfig-sample-
 spec:
+  # Specify the type of Job.
+  type: Adhoc
+
   # Map of key-value pairs to substitute into the task template.
   substitutions:
     option.username: Example User
 
   # Describes how to create the Job.
   template:
-    # Task configuration for the Job.
-    task:
-      # Optional duration in seconds for how long the task should be pending
-      # until it gets killed.
-      pendingTimeoutSeconds: 1800
+    # Specifies how to run the job in parallel.
+    parallelism:
+      # Run 3 tasks in parallel.
+      withCount: 3
 
-      # Specify the template to create the task.
-      template:
+      # Wait for all 3 tasks to succeed before deemed as successful.
+      completionStrategy: AllSuccessful
+
+    # Specifies maximum number of attempts for each task, defaults to 1.
+    maxAttempts: 3
+
+    # Optional delay between each task retry.
+    retryDelaySeconds: 10
+
+    # Optional duration in seconds for how long each task should be pending for
+    # until it gets killed.
+    taskPendingTimeoutSeconds: 1800
+
+    # Forbids force deletion of tasks.
+    forbidTaskForceDeletion: true
+
+    # The template for each task to be created by the Job.
+    taskTemplate:
+      # Specify how to create the task as a Pod. This is just a PodTemplateSpec.
+      pod:
         spec:
           containers:
             - args:
@@ -67,14 +87,15 @@ spec:
                   value: ${job.name}
                 - name: TASK_NAME
                   value: ${task.name}
+                - name: TASK_INDEX
+                  value: ${task.index_num}
               image: alpine
               name: job-container
               resources:
                 limits:
                   cpu: 100m
                   memory: 64Mi
-          restartPolicy: Never
 
-    # Optional duration that the Job should live after it is finished.
-    ttlSecondsAfterFinished: 3600
+  # Optional duration that the Job should live after it is finished.
+  ttlSecondsAfterFinished: 3600
 ```

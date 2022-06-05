@@ -20,4 +20,6 @@ A Job's spec is local to the particular job execution. Modifying the JobConfig a
 
 ## Task
 
-A **Task** represents a Job's actual manifestation of execution. Each Job may retry multiple times, and each retry manifests as a Task. A Task is backed by a [Pod](https://kubernetes.io/docs/concepts/workloads/pods/) by default, but could be extended by implementing custom [task executors](./job/task-executor.md) in the future.
+A **Task** represents a Job's actual manifestation of task execution. A Job may create one or more Tasks, which can represent both parallel tasks being executed (see Parallel Execution) or individual retries (see [Timeouts and Retries](./job/timeout-retries.md)).
+
+A Task is an abstract representation of a workload, such as a [Pod](https://kubernetes.io/docs/concepts/workloads/pods/). Currently, the only supported [task executor](./job/task-executor.md) is a Pod, but more task executors are planned in the future.

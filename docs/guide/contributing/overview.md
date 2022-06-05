@@ -1,6 +1,10 @@
 # Contribution Guide
 
-We're so excited that you want to contribute to Furiko! Here we will briefly outline the different ways you can contribute to the project.
+We're so excited that you want to contribute to Furiko! We will briefly outline the different ways you can contribute to the project.
+
+## Roadmap
+
+Before contributing, refer to the [Roadmap](./roadmap.md) which covers planned features and developments for Furiko.
 
 ## Core Kubernetes Operators
 
@@ -16,7 +20,7 @@ We also welcome design proposals, feature requests and ideas for the scope of Fu
 
 ## Command-Line Tools
 
-We currently don't have a dedicated command-line tool for Furiko yet, but we hope to develop one. If you would like to start the ball rolling, we would love to hear from you.
+The [`furiko` CLI tool](../setup/cli.md) is also located in the [main Furiko repository](https://github.com/furiko-io/furiko). For more information, refer to the [Contribution Guide](https://github.com/furiko-io/furiko/blob/main/CONTRIBUTING.md).
 
 ## User Interface
 
@@ -37,7 +41,7 @@ Some areas that we would love contributions in include:
 - Setting up test infrastructure
 - Designing end-to-end tests for controllers and webhooks
 - Increasing code coverage of unit tests
-- Stress testing
+- Stress/scalability testing
 - Security testing and fuzzing
 
 ## Other Ways to Contribute

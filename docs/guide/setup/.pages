@@ -1,5 +1,6 @@
 nav:
   - Installing Furiko: install.md
+  - Using the CLI: cli.md
   - Configuring Furiko: configuration.md
   - Advanced Installation: advanced-installation.md
   - ...

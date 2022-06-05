@@ -14,9 +14,9 @@ Users who are familiar with Rundeck may find this concept familiar, as it was in
 
 Context variables can be used inside the Job/JobConfig's task template, like so:
 
-```{.yaml title="Example JobTaskSpec"}
-task:
-  template:
+```{.yaml title="Example TaskTemplate"}
+taskTemplate:
+  pod:
     spec:
       containers:
         - name: job-container
@@ -25,7 +25,7 @@ task:
             - "Job Name: ${job.name}"
 ```
 
-Only the following fields support context variable substitution:
+For `pod`, only the following fields support context variable substitution:
 
 - `.spec.containers.*.image`
 - `.spec.containers.*.command.*`
@@ -46,10 +46,13 @@ Each context corresponds to a stage in the Job's lifecycle when certain variable
 
 Variables are evaluated when creating a Job from a JobConfig, such as during cron scheduling or ad-hoc starts of a Job.
 
-| Variable              | Description                                      | Example                |
-| --------------------- | ------------------------------------------------ | ---------------------- |
-| `jobconfig.name`      | Name of the JobConfig that created the Job.      | `my-example-jobconfig` |
-| `jobconfig.namespace` | Namespace of the JobConfig that created the Job. | `furiko`               |
+| Variable                  | Description                                        | Example                                |
+| ------------------------- | -------------------------------------------------- | -------------------------------------- |
+| `jobconfig.name`          | Name of the JobConfig that created the Job.        | `my-example-jobconfig`                 |
+| `jobconfig.namespace`     | Namespace of the JobConfig that created the Job.   | `furiko`                               |
+| `jobconfig.uid`           | UID of the JobConfig that created the Job.         | `4247b21e-713f-46db-b8f5-39917893577e` |
+| `jobconfig.cron_schedule` | Cron expression that was used to schedule the Job. | `H/15 * * * *`                         |
+| `jobconfig.cron_timezone` | Cron timezone that was used to schedule the Job.   | `Asia/Singapore`                       |
 
 ### `job`
 
@@ -70,6 +73,14 @@ Variables are evaluated when creating a task.
 | `task.name`        | Name of the task.                           | `my-example-jobconfig.1646586480.1` |
 | `task.namespace`   | Namespace of the task.                      | `furiko`                            |
 | `task.retry_index` | The retry index of the task, starts from 1. | `1`                                 |
+
+Additionally, the following variables are included when a [parallel job](../job/parallelism.md) is created:
+
+| Variable                  | Description                                                                                    | Example   |
+| ------------------------- | ---------------------------------------------------------------------------------------------- | --------- |
+| `task.index_num`          | If `withCount` is used, the task index number (from 0...N-1).                                  | `2`       |
+| `task.index_key`          | If `withKeys` is used, the task index key (as a string).                                       | `item-3`  |
+| `task.index_matrix.<key>` | If `withMatrix` is used, the value of the corresponding key in the matrix for this task index. | `value-1` |
 
 ### `option`
 

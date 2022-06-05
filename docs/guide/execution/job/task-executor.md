@@ -2,20 +2,44 @@
 
 Furiko supports an extensible task executor interface, which allows tasks to be created, managed and reconciled in the same way regardless of the actual backing object.
 
-A Job creates one or more tasks during its lifecycle. Each task corresponds to an attempt to execute the Job. For example, for a Job that has a `maxRetryAttempts` of `2`, it may create up to 3 tasks if they had all consecutively failed.
+## Task Index
 
-Currently, all tasks are created as Pods, but more task executors could be added in the future to support different types of tasks.
+A Job creates one or more tasks during its lifecycle. Each task corresponds to a single **parallel** and **retry index** for the Job:
 
-## Executors
+- **Parallel Index**: If the Job has N [parallel tasks](./parallelism.md), then there are N parallel indexes. Otherwise, there is 1 parallel index (i.e. it is not parallel).
+- **Retry Index**: If the Job specifies `maxAttempts` of M, then there are _up to_ M retry indexes.
 
-### PodTaskExecutor
+Therefore, each Task corresponds to a single `(N, M)` combination of the above indexes. As an example, for a Job with a parallelism factor of 3 and `maxAttempts` of `2`, up to 6 tasks will be created for the Job (assuming that each attempt had failed).
 
-The PodTaskExecutor is the default and currently only task executor available in Furiko. Each task will be created as a Pod. On most Kubernetes clusters, this translates to a single container that runs to completion.
+## Task Executor List
 
-Additional behavior is as follows:
+Currently the only task executor available in Furiko is `pod`, but more task executors are planned in the [Roadmap](../../contributing/roadmap.md).
 
-1. A task's kill timestamp will translate into the Pod's `activeDeadlineSeconds`.
-2. If the Pod is not yet scheduled by kube-scheduler, it will be deleted instead of using active deadline.
+### `pod`
+
+Each task will be created as a [Pod](https://kubernetes.io/docs/concepts/workloads/pods/). On a typical Kubernetes cluster, this translates to one or more containers that run to completion.
+
+<!-- prettier-ignore -->
+??? example "Example `pod` TaskTemplate"
+
+    ```{.yaml title=""}
+    taskTemplate:
+      pod:
+        metadata:
+          annotations:
+            app.kubernetes.io/name: jobconfig-sample-pod
+        spec:
+          containers:
+          - args:
+            - echo
+            - Hello world!
+            image: alpine
+            name: job-container
+            resources:
+              limits:
+                cpu: 100m
+                memory: 64Mi
+    ```
 
 #### Virtual Pods
 
@@ -28,9 +52,10 @@ If Virtual Kubelet is provisioned in the cluster, some possible use cases includ
 
 The usage and support of Virtual Kubelet is outside the scope of the Furiko project.
 
-### Potential Executors
+### `argoWorkflow`
 
-The following is a list of potential executors that could be supported in the future:
+<!-- prettier-ignore -->
+!!! info
+    Currently planned in the [Roadmap](../../contributing/roadmap.md).
 
-- Serverless function invocations (e.g. Knative)
-- SSH/bare metal executors
+Each task will be created as an [Argo `Workflow` object](https://argoproj.github.io/argo-workflows/fields/#workflow). Requires [Argo Workflows](https://argoproj.github.io/argo-workflows/) to be installed in the cluster (not included with Furiko).

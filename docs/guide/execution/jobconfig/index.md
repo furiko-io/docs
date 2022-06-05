@@ -14,15 +14,21 @@ You can configure a JobConfig to be periodically scheduled, using an [extended C
 
 For more information, see [Scheduling](./scheduling.md).
 
+## Concurrency
+
+You can define the expected behavior for executing multiple Jobs that belong the same JobConfig.
+
+For more information, see [Concurrency](./concurrency.md).
+
 ## Job Options
 
 You also can parameterize the JobConfig which describes what arguments it can accept (according to various types), and how they should be substituted into the Task's template.
 
 For example, if we wanted to parameterize an input flag to a script, say `--config-name`, we could define a job option which substitutes the task's `args` field as follows:
 
-```{.yaml title="Example JobTaskSpec"}
-task:
-  template:
+```{.yaml title="Example TaskTemplate"}
+taskTemplate:
+  pod:
     spec:
       containers:
         - name: job-container

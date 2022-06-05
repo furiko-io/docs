@@ -2,7 +2,20 @@
 
 This page will discuss how to run once-off, or **adhoc** Job executions. An adhoc Job is one that is not scheduled automatically (e.g. from a cron schedule), but rather started explicitly (such as via user creation or external triggers).
 
-## JobConfig Templating
+## Using the CLI
+
+The easiest way to run an adhoc Job execution is to use the [`furiko` CLI tool](../../setup/cli.md):
+
+<figure markdown="1">
+  ![Example of `furiko run` in action](./img/furiko-run.png)
+</figure>
+
+It is recommended to use `furiko run`, which supports the following features:
+
+- Interactive prompt for [option values](../jobconfig/job-options.md) (suppress with `--use-default-options`)
+- Specify future timestamp to [start after](./start-policy.md#startafter) (with `--at`)
+
+## Creating a Job from a JobConfig
 
 A Job is typically created from a JobConfig, since the JobConfig controller groups together multiple Job objects and controls their lifecycle and behavior.
 
@@ -70,8 +83,9 @@ The [webhook](../../development/architecture/execution-webhook.md) is responsibl
         option.username: Example User
       # Inherited from the JobConfig's spec.template.
       template:
-        task:
-          template:
+        maxAttempts: 1
+        taskTemplate:
+          pod:
             metadata: {}
             spec:
               containers:

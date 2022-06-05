@@ -49,6 +49,18 @@ If not specified, defaults to the controller's global default configuration valu
 
 Automatic scheduling can also be disabled or suspended, by specifying `disabled: true`.
 
+### `constraints`
+
+Specify any constraints that should apply to the schedule.
+
+### `schedule.notBefore`
+
+If specified, automatic scheduling will not take place before this timestamp. Useful to specify a JobConfig that should only start scheduling only after a certain date in the future.
+
+### `schedule.notAfter`
+
+If specified, automatic scheduling will not take place after this timestamp. Useful to specify a JobConfig that should stop scheduling after a certain date in the future.
+
 ## Handling Concurrent Jobs
 
 Jobs may not be scheduled immediately (or forbidden entirely) based on the concurrency policy if there are concurrent executions of Jobs belonging to this JobConfig.
@@ -81,18 +93,7 @@ This effectively allows the controller to **survive short periods of downtime** 
 
 The back-scheduling thresholds can be further tuned according to you or your organization's requirements.
 
-#### `maxDowntimeThresholdSeconds`
+- [`maxDowntimeThresholdSeconds`](../../../reference/configuration/execution/dynamic-config.md#maxdowntimethresholdseconds): Defines the maximum downtime beyond which back-scheduling will not take place.
+- [`maxMissedSchedules`](../../../reference/configuration/execution/dynamic-config.md#maxmissedschedules): Defines the maximum number of missed schedules per JobConfig that the controller will attempt to back-schedule.
 
-Defines the maximum downtime that the controller can tolerate. If the controller was intentionally shut down for an extended period of time, we should not attempt to back-schedule jobs once it was started.
-
-In practice, setting this to too high of a value means that jobs could be ridiculously delayed when they are better off being skipped entirely (say, sending out a end-of-week report on the following Monday instead).
-
-Defaults to 300 (5 minutes). It is recommended to tune this to the maximum realistic outage duration of the controller.
-
-#### `maxMissedSchedules`
-
-Defines a maximum number of jobs that the controller should back-schedule, or attempt to create after coming back up from downtime. Having a sane value here would prevent a thundering herd of jobs being scheduled that would exhaust resources in the cluster.
-
-In practice, setting this to too high of a value could result in accidental resource exhaustion in the cluster if the controller was intentionally shut down for an extended period of time.
-
-Defaults to 5.
+For more information, refer to the [Execution Dynamic Configuration](../../../reference/configuration/execution/dynamic-config.md) reference.

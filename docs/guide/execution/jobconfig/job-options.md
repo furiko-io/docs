@@ -32,7 +32,7 @@ spec:
 
 This declares an option `option.username` that can be used in the task template, with a default value of `Guest User`. You can then utilize the option value like so:
 
-```{.yaml title="Example PodTemplateSpec"}
+```{.yaml title="Example PodTemplateSpec (in TaskTemplate)"}
 spec:
   containers:
     - name: job-container
@@ -62,7 +62,7 @@ Some option types specify a `default` field in the config which defines a defaul
 
 ### `type`
 
-The type of option, must be one of the allowed values below.
+The type of option must be one of the allowed values below.
 
 | Name                             | Input Type | Description                                   |
 | -------------------------------- | ---------- | --------------------------------------------- |
