@@ -2,7 +2,7 @@
 
 Furiko allows extensive configuration of its behavior, while also defaulting to recommended, sane defaults out of the box.
 
-## Dynamic Configuration
+## Editing the `ConfigMap`
 
 The main method of configuring Furiko is via _dynamic configuration_. As the name suggests, configuration can be dynamically updated and will take effect immediately without requiring a restart of Furiko services.
 

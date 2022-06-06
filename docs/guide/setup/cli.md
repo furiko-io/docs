@@ -76,12 +76,10 @@ Use "furiko [command] --help" for more information about a command.
   Last Scheduled:  Mon, 30 May 2022 08:00:00 +08:00 (2 days ago)
   ```
 
-- Run a JobConfig to create an [ad-hoc Job](../execution/job/adhoc-execution.md):
+- Run a JobConfig to create an [ad-hoc Job](../execution/job/adhoc-execution.md), prompting the user to enter [job options](../execution/jobconfig/job-options.md):
 
   ```sh
-  $ furiko run refund-customer-payments
-  Please input option values.
-  ? Username Example User
-  ? Days 2
-  Job default/refund-customer-payments-7j7lb created
+  $ furiko run jobconfig-sample
   ```
+
+  ![Example of `furiko run` in action](../execution/job/img/furiko-run.png)

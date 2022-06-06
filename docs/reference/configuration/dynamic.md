@@ -6,7 +6,7 @@ This page introduces how to use **Dynamic Configuration** in Furiko.
 
 As compared to [_bootstrap configuration_](./bootstrap.md), dynamic configuration can be updated and will take effect immediately upon saving. This type of configuration typically contains knobs to tune the behavior of Furiko, so that any configuration does not require a full restart of any of Furiko services running in the cluster.
 
-## Data Source
+### Data Source
 
 Dynamic configuration is typically stored in a ConfigMap, such as `execution-dynamic-config` in `furiko-system` namespace. It can also be stored in a Secret instead if sensitive values need to be stored in a more secure fashion.
 
@@ -25,7 +25,7 @@ dynamicConfigs:
 
 See [Bootstrap Config](./bootstrap.md) for more details.
 
-## Config Data
+### Config Data
 
 Dynamic configuration is split into several configuration files, which correspond to the keys in the ConfigMap itself. More information can be found in the _Dynamic Config_ pages under each component.
 
@@ -49,7 +49,7 @@ data:
     cronHashNames: true
 ```
 
-## Components
+## Configuration Options
 
 Documentation on Furiko dynamic configuration is split on a per-component basis.
 
