@@ -12,7 +12,7 @@ Furiko also offers native support for scheduling jobs on a [cron schedule with t
 
 ### Cluster-wide Load Balancing
 
-Furiko offers a unique, [extended cron syntax](./execution/jobconfig/cron-syntax.md#hash-based-load-balancing) that may drastically improve the performance of running distributed cron at scale. For example, specifying `H/5 * * * *` means to run on a "random" minute in the hour.
+Furiko offers a unique, [extended cron syntax](./execution/jobconfig/cron-syntax.md#hash-based-load-balancing) that may drastically improve the performance of running distributed cron at scale. For example, specifying `H/5 * * * *` means to run every 5 minutes, on a "random" minute/second within the 5 minute range.
 
 This helps to avoid thundering herd effects in clusters when thousands of other jobs also start at the exact same time, evenly spreading out job executions which reduces waiting duration and impact on other downstream dependencies.
 
