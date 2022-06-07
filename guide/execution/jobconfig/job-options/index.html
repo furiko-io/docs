@@ -1,0 +1,2174 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cloud-native, enterprise-level cron job platform for Kubernetes">
+      
+      
+      
+        <link rel="canonical" href="https://furiko.io/guide/execution/jobconfig/job-options/">
+      
+      <link rel="icon" href="../../../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.4">
+    
+    
+      
+        <title>Job Options - Furiko Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/hero.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="furiko_slate" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#job-options" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Furiko Documentation" class="md-header__button md-logo" aria-label="Furiko Documentation" data-md-component="logo">
+      
+  <img src="../../../../assets/images/logo_banner.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Furiko Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Job Options
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="furiko_slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="furiko" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/furiko-io/furiko" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    furiko-io/furiko
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../overview/" class="md-tabs__link md-tabs__link--active">
+        Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../reference/overview/" class="md-tabs__link">
+        Reference
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Furiko Documentation" class="md-nav__button md-logo" aria-label="Furiko Documentation" data-md-component="logo">
+      
+  <img src="../../../../assets/images/logo_banner.svg" alt="logo">
+
+    </a>
+    Furiko Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/furiko-io/furiko" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    furiko-io/furiko
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../features/" class="md-nav__link">
+        Features
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/" class="md-nav__link">
+        Components
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" data-md-state="indeterminate" type="checkbox" id="__nav_2_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/install/" class="md-nav__link">
+        Installing Furiko
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/cli/" class="md-nav__link">
+        Using the CLI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/configuration/" class="md-nav__link">
+        Configuring Furiko
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/advanced-installation/" class="md-nav__link">
+        Advanced Installation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Execution
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Execution" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Execution
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        Concepts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2" type="checkbox" id="__nav_2_5_2" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../">JobConfig</a>
+          
+            <label for="__nav_2_5_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="JobConfig" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          JobConfig
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scheduling/" class="md-nav__link">
+        Scheduling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cron-syntax/" class="md-nav__link">
+        Cron Syntax
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrency/" class="md-nav__link">
+        Concurrency
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../context-variables/" class="md-nav__link">
+        Context Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Job Options
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Job Options
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-values" class="md-nav__link">
+    Default Values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-configuration" class="md-nav__link">
+    Option Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Option Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label" class="md-nav__link">
+    label
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    required
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-types" class="md-nav__link">
+    Option Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Option Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-options" class="md-nav__link">
+    String Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-options" class="md-nav__link">
+    Boolean Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#booloptionformat" class="md-nav__link">
+    BoolOptionFormat
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-options" class="md-nav__link">
+    Select Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-select-options" class="md-nav__link">
+    Multi-select Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-options" class="md-nav__link">
+    Date Options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sample-configuration/" class="md-nav__link">
+        Sample Configuration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_3" data-md-state="indeterminate" type="checkbox" id="__nav_2_5_3" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../job/">Job</a>
+          
+            <label for="__nav_2_5_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Job" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Job
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/task-executor/" class="md-nav__link">
+        Task Executors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/adhoc-execution/" class="md-nav__link">
+        Adhoc Execution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/start-policy/" class="md-nav__link">
+        Start Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/parallelism/" class="md-nav__link">
+        Parallelism
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/timeout-retries/" class="md-nav__link">
+        Timeouts and Retries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/killing-jobs/" class="md-nav__link">
+        Killing Jobs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/force-deletion/" class="md-nav__link">
+        Force Deletion
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/garbage-collection/" class="md-nav__link">
+        Garbage Collection
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../job/sample-configuration/" class="md-nav__link">
+        Sample Configuration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_6" data-md-state="indeterminate" type="checkbox" id="__nav_2_6" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_6">
+          Contributing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Contributing" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Contributing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contributing/overview/" class="md-nav__link">
+        Contribution Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contributing/roadmap/" class="md-nav__link">
+        Roadmap
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_7" data-md-state="indeterminate" type="checkbox" id="__nav_2_7" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2_7">
+          Development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Development" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/overview/" class="md-nav__link">
+        Developer Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_7_2" data-md-state="indeterminate" type="checkbox" id="__nav_2_7_2" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../development/architecture/">Architecture</a>
+          
+            <label for="__nav_2_7_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Architecture" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          Architecture
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/architecture/execution-controller/" class="md-nav__link">
+        ExecutionController
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/architecture/execution-webhook/" class="md-nav__link">
+        ExecutionWebhook
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" data-md-state="indeterminate" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Configuration
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Configuration" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Configuration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/configuration/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/configuration/bootstrap/" class="md-nav__link">
+        Bootstrap Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/configuration/dynamic/" class="md-nav__link">
+        Dynamic Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_4" data-md-state="indeterminate" type="checkbox" id="__nav_3_2_4" checked>
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../../reference/configuration/execution/">Execution</a>
+          
+            <label for="__nav_3_2_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="Execution" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Execution
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/configuration/execution/controller-flags/" class="md-nav__link">
+        Controller Flags
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/configuration/execution/controller-config/" class="md-nav__link">
+        Controller Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/configuration/execution/webhook-flags/" class="md-nav__link">
+        Webhook Flags
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/configuration/execution/webhook-config/" class="md-nav__link">
+        Webhook Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../reference/configuration/execution/dynamic-config/" class="md-nav__link">
+        Dynamic Config
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-values" class="md-nav__link">
+    Default Values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-configuration" class="md-nav__link">
+    Option Configuration
+  </a>
+  
+    <nav class="md-nav" aria-label="Option Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#name" class="md-nav__link">
+    name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label" class="md-nav__link">
+    label
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    required
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#option-types" class="md-nav__link">
+    Option Types
+  </a>
+  
+    <nav class="md-nav" aria-label="Option Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#string-options" class="md-nav__link">
+    String Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean-options" class="md-nav__link">
+    Boolean Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Boolean Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#booloptionformat" class="md-nav__link">
+    BoolOptionFormat
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select-options" class="md-nav__link">
+    Select Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-select-options" class="md-nav__link">
+    Multi-select Options
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-options" class="md-nav__link">
+    Date Options
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+<a href="https://github.com/furiko-io/furiko/edit/main/docs/guide/execution/jobconfig/job-options.md" title="Edit this page" class="md-content__button md-icon">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+</a>
+
+
+
+<h1 id="job-options">Job Options</h1>
+<p>This page introduces the concept of Job Options, which allows Furiko users to parameterize their jobs with structured user-defined input. Note that a <em>Job Option</em> is a special type of <a href="../context-variables/">Context Variable</a>; refer to the linked page to see how they work.</p>
+<h2 id="overview">Overview</h2>
+<h3 id="introduction">Introduction</h3>
+<p>A job option looks like <code>${option.my_option_name}</code>, where the option name <code>my_option_name</code> is a custom variable defined in the JobConfig.</p>
+<p>Users who are familiar with Rundeck may find this concept familiar, as it was inspired by the corresponding feature in Rundeck: <a href="https://docs.rundeck.com/docs/manual/job-options.html">https://docs.rundeck.com/docs/manual/job-options.html</a></p>
+<h3 id="usage">Usage</h3>
+<p>Job options have to be first defined in the JobConfig, like so:</p>
+<div class="highlight"><span class="filename">Example JobConfigSpec</span><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">execution.furiko.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JobConfig</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">generateName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jobconfig-sample</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">option</span><span class="p">:</span>
+    <span class="nt">options</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">username</span>
+        <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Username</span>
+        <span class="nt">string</span><span class="p">:</span>
+          <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Guest User</span>
+          <span class="nt">trimSpaces</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>This declares an option <code>option.username</code> that can be used in the task template, with a default value of <code>Guest User</code>. You can then utilize the option value like so:</p>
+<div class="highlight"><span class="filename">Example PodTemplateSpec (in TaskTemplate)</span><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">containers</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">job-container</span>
+      <span class="nt">args</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">echo</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;Hello</span><span class="nv"> </span><span class="s">world,</span><span class="nv"> </span><span class="s">${option.username}!&quot;</span>
+</code></pre></div>
+<p>To pass option value inputs into the JobConfig, you can do so with <a href="../../job/adhoc-execution/#optionvalues"><code>optionValues</code></a>:</p>
+<div class="highlight"><span class="filename">Example JobSpec</span><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">execution.furiko.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Job</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">generateName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jobconfig-sample-</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">configName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jobconfig-sample</span>
+  <span class="nt">optionValues</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+    <span class="no">username: John</span>
+</code></pre></div>
+<h3 id="default-values">Default Values</h3>
+<p>Some option types specify a <code>default</code> field in the config which defines a default value when not specified. This will be used when a Job is started automatically, e.g. on a cron schedule.</p>
+<h2 id="option-configuration">Option Configuration</h2>
+<h3 id="type"><code>type</code></h3>
+<p>The type of option must be one of the allowed values below.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Input Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#string-options"><code>String</code></a></td>
+<td><code>string</code></td>
+<td>Arbitary string input</td>
+</tr>
+<tr>
+<td><a href="#boolean-options"><code>Bool</code></a></td>
+<td><code>bool</code></td>
+<td>Boolean input</td>
+</tr>
+<tr>
+<td><a href="#select-options"><code>Select</code></a></td>
+<td><code>string</code></td>
+<td>String input from a list of choices</td>
+</tr>
+<tr>
+<td><a href="#multi-select-options"><code>Multi</code></a></td>
+<td><code>[]string</code></td>
+<td>List of strings, input from a list of choices</td>
+</tr>
+<tr>
+<td><a href="#date-options"><code>Date</code></a></td>
+<td><code>string</code></td>
+<td>RFC3339-formatted date/time string</td>
+</tr>
+</tbody>
+</table>
+<p>Additional option configuration may apply for specific option types. Each option type above links to addition configuration documentation, as well as example configuration, input specification and output values.</p>
+<h3 id="name"><code>name</code></h3>
+<p>The canonical name of the option, like <code>my_option_name</code>, which will be used during substitution of the task template. Should not contain spaces or special characters other than underscore, hyphen and dot.</p>
+<h3 id="label"><code>label</code></h3>
+<p>An optional human-readable label of the option, like <code>My Option</code>. This will be displayed only in human-readable interfaces.</p>
+<p>If not specified, it will default to <code>name</code>.</p>
+<h3 id="required"><code>required</code></h3>
+<p>Defines whether this option is required. Does not apply to <code>bool</code> options.</p>
+<p>When used in conjunction with <code>default</code> (available in some option types), if there is no default value AND there is not input value specified via <code>optionValues</code>, the Job will fail validation and will not be created.</p>
+<!-- prettier-ignore -->
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Jobs which are started on a scheduled basis will fail if <code>required</code> is true but there is no <code>default</code> value.</p>
+</div>
+<h2 id="option-types">Option Types</h2>
+<h3 id="string-options">String Options</h3>
+<p>The <code>String</code> option type allows you to specify an option that accepts arbitrary string input.</p>
+<table>
+<thead>
+<tr>
+<th>Config</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code></td>
+<td><code>string</code></td>
+<td>Default value if not specified. If empty and <code>required</code>, will throw a validation error.</td>
+</tr>
+<tr>
+<td><code>trimSpaces</code></td>
+<td><code>bool</code></td>
+<td>If true, the spaces will be trimmed from the input value (start and end) before substitution.</td>
+</tr>
+</tbody>
+</table>
+<!-- prettier-ignore -->
+<details class="example"><summary>Example Usage</summary><div class="highlight"><span class="filename">Example Option Configuration</span><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">String</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">username</span>
+  <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Username</span>
+  <span class="nt">string</span><span class="p">:</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Example User</span>
+    <span class="nt">trimSpaces</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example optionValues</span><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">optionValues</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+    <span class="no">username: johnw203</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code>johnw203
+</code></pre></div>
+</details>
+<h3 id="boolean-options">Boolean Options</h3>
+<p>The <code>Bool</code> option type allows you to specify an option that has only two possible values.</p>
+<table>
+<thead>
+<tr>
+<th>Config</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code></td>
+<td><code>bool</code></td>
+<td>Default value (<code>true</code> or <code>false</code>) if not specified.</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td><code>BoolOptionFormat</code></td>
+<td>Format type to render the bool option value as a string. Use <code>custom</code> to specify custom true/false format.</td>
+</tr>
+<tr>
+<td><code>trueVal</code></td>
+<td><code>string</code></td>
+<td>Custom string to format if value is <code>true</code>. Only applicable to <code>custom</code> format.</td>
+</tr>
+<tr>
+<td><code>falseVal</code></td>
+<td><code>string</code></td>
+<td>Custom string to format if value is <code>false</code>. Only applicable to <code>custom</code> format.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="booloptionformat"><code>BoolOptionFormat</code></h4>
+<p>The following is a list of pre-defined <code>BoolOptionFormat</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>True</th>
+<th>False</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TrueFalse</code> (default)</td>
+<td><code>true</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>YesNo</code></td>
+<td><code>yes</code></td>
+<td><code>no</code></td>
+</tr>
+<tr>
+<td><code>OneZero</code></td>
+<td><code>1</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>Custom</code></td>
+<td>(custom)</td>
+<td>(custom)</td>
+</tr>
+</tbody>
+</table>
+<p>If none of the above suit your needs, you can use <code>Custom</code> to specify a custom <code>trueVal</code> and <code>falseVal</code>.</p>
+<!-- prettier-ignore -->
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Using a <code>bool</code> option type is most useful for specifying command-line flags (e.g. <code>--verbose</code>), see the example below.</p>
+</div>
+<!-- prettier-ignore -->
+<details class="example"><summary>Example Usage</summary><div class="highlight"><span class="filename">Example Option Configuration</span><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Bool</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">verbose</span>
+  <span class="nt">label</span><span class="p">:</span> <span class="s">&quot;Verbose?&quot;</span>
+  <span class="nt">bool</span><span class="p">:</span>
+    <span class="nt">format</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Custom</span>
+    <span class="nt">trueVal</span><span class="p">:</span> <span class="s">&quot;--verbose&quot;</span>
+    <span class="nt">falseVal</span><span class="p">:</span> <span class="s">&quot;&quot;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example optionValues</span><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">optionValues</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+    <span class="no">verbose: true</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code>--verbose
+</code></pre></div>
+</details>
+<h3 id="select-options">Select Options</h3>
+<p>The <code>select</code> option type allows you to specify an option whose values belong to a fixed set of values.</p>
+<table>
+<thead>
+<tr>
+<th>Config</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code></td>
+<td><code>string</code></td>
+<td>Default value if not specified. If empty and <code>required</code>, will throw a validation error. Must be one of the values in <code>values</code>.</td>
+</tr>
+<tr>
+<td><code>values</code></td>
+<td><code>[]string</code></td>
+<td>List of allowed values to choose from.</td>
+</tr>
+<tr>
+<td><code>allowCustom</code></td>
+<td><code>bool</code></td>
+<td>If false, then input values not found in <code>values</code> will be rejected.</td>
+</tr>
+</tbody>
+</table>
+<!-- prettier-ignore -->
+<details class="example"><summary>Example Usage</summary><div class="highlight"><span class="filename">Example Option Configuration</span><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Select</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">person</span>
+  <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Person Name</span>
+  <span class="nt">select</span><span class="p">:</span>
+    <span class="nt">default</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Bob</span>
+    <span class="nt">values</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">Mary</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">Bob</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">Alice</span>
+    <span class="nt">allowCustom</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example optionValues</span><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">optionValues</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+    <span class="no">person: Mary</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code>Mary
+</code></pre></div>
+</details>
+<h3 id="multi-select-options">Multi-select Options</h3>
+<p>The <code>multi</code> option type allows you to specify an option whose values belong to a fixed set of values, where users can specify zero or more values.</p>
+<table>
+<thead>
+<tr>
+<th>Config</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>default</code></td>
+<td><code>[]string</code></td>
+<td>Default set of values if not specified. If empty and <code>required</code>, will throw a validation error. Must be one of the values in <code>values</code>.</td>
+</tr>
+<tr>
+<td><code>values</code></td>
+<td><code>[]string</code></td>
+<td>List of allowed values to choose from.</td>
+</tr>
+<tr>
+<td><code>delimiter</code></td>
+<td><code>string</code></td>
+<td>String to delimit values by.</td>
+</tr>
+<tr>
+<td><code>allowCustom</code></td>
+<td><code>bool</code></td>
+<td>If false, then input values not found in <code>values</code> will be rejected.</td>
+</tr>
+</tbody>
+</table>
+<!-- prettier-ignore -->
+<details class="example"><summary>Example Usage</summary><div class="highlight"><span class="filename">Example Option Configuration</span><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Multi</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">targets</span>
+  <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Targets</span>
+  <span class="nt">multi</span><span class="p">:</span>
+    <span class="nt">default</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">redis</span>
+    <span class="nt">values</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysql</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">redis</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">s3</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">kafka</span>
+    <span class="nt">delimiter</span><span class="p">:</span> <span class="s">&quot;,&quot;</span>
+    <span class="nt">allowCustom</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p><div class="highlight"><span class="filename">Example optionValues</span><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">optionValues</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+    <span class="no">targets:</span>
+      <span class="no">- kafka</span>
+      <span class="no">- s3</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code>kafka,s3
+</code></pre></div></p>
+</details>
+<h3 id="date-options">Date Options</h3>
+<p>The <code>date</code> option type allows you to specify an option which accepts a date/time with timezone.</p>
+<p>If not set, the default value is an empty string.</p>
+<!-- prettier-ignore -->
+<div class="admonition info">
+<p class="admonition-title">Timezones</p>
+<p>The timezone of the formatted date string follows that of the input option. A full example with timezone is described below.</p>
+<div class="highlight"><span class="filename">Example Option Configuration</span><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Date</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">startTime</span>
+  <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Start Time</span>
+  <span class="nt">date</span><span class="p">:</span>
+    <span class="nt">format</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">HH:mm:ss</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example optionValues</span><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+  <span class="c1"># We specify 02:30 AM in Indian Standard Time.</span>
+  <span class="nt">optionValues</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+    <span class="no">startTime: &quot;2022-03-14T02:30:00+05:30&quot;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code># It is formatted in the same timezone as the input, thus producing 02:30 AM.
+02:30:00
+</code></pre></div>
+<p>As such, if the output value is required to be timezone-aware, we strongly recommend using the full RFC3339-formatted date string and parsing it in your application. If an exact point in time is desired (i.e. not timezone-aware), we recommend using <code>X</code> for the date format (which produces the Unix timestamp).</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Config</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>format</code></td>
+<td><code>string</code></td>
+<td><a href="https://momentjs.com/docs/#/displaying/format/">Moment.js</a> format string to format the input date. If not specified, defaults to RFC3339 format (<code>YYYY-MM-DDTHH:mm:ssZ</code>).</td>
+</tr>
+</tbody>
+</table>
+<!-- prettier-ignore -->
+<details class="example"><summary>Example Usage</summary><div class="highlight"><span class="filename">Example Option Configuration</span><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Date</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">fromDate</span>
+  <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">From Date</span>
+  <span class="nt">date</span><span class="p">:</span>
+    <span class="nt">format</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">YYYY-MM-DD</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example optionValues</span><pre><span></span><code><span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">optionValues</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+    <span class="no">fromDate: &quot;2022-01-01T00:02:30Z&quot;</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Example Output</span><pre><span></span><code>2022-01-01
+</code></pre></div>
+</details>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../context-variables/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Context Variables" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Context Variables
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../sample-configuration/" class="md-footer__link md-footer__link--next" aria-label="Next: Sample Configuration" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Sample Configuration
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 The Furiko Authors 🕰️
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.indexes", "navigation.sections", "navigation.expand", "navigation.tabs", "search.highlight", "search.share", "search.suggest"], "search": "../../../../assets/javascripts/workers/search.bd0b6b67.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.5413a266.min.js"></script>
+      
+    
+  </body>
+</html>
